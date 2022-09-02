@@ -1,0 +1,10 @@
+import mongoose from "mongoose";
+
+const categorySchema = new mongoose.Schema({
+  id: { type: String },
+  categoryName: { type: String, require: true },
+});
+
+const category = mongoose.model("category", categorySchema);
+
+export default category;
