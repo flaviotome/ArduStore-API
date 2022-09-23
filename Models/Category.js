@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import ObjectId from "mongoose/lib/types/objectid.js";
 
 const categorySchema = new mongoose.Schema({
-  id: { type: String },
+  id: { type: ObjectId },
   categoryName: { type: String, require: true },
 });
 

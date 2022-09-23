@@ -1,3 +1,4 @@
+import ObjectId from "mongoose/lib/types/objectid.js";
 import products from "../Models/Product.js";
 
 class ProductController {
@@ -7,7 +8,7 @@ class ProductController {
     products.find((err, product) => {
       res.status(200).json(product);
       console.log(product);
-    });
+    }).populate('productType');
   };
 
   /************** GET BY ID ********************/
@@ -56,12 +57,12 @@ class ProductController {
 
   static updateProduct = (req, res) => {
     //id is passed by the url ( http/address/products/$id )
-    const id = req.params.id;
+    const id = req.params;
 
     //search by id and update using the mongoose $set method
-    products.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+    products.findByIdAndUpdate(ObjectId(id), { $set: req.body }, (err,product) => {
       if (!err) {
-        res.status(200).send("Produto Atualizado com sucesso");
+        res.status(200).send(product.toJSON());
       } else {
         res.status(500).send(err.message);
       }

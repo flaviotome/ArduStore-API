@@ -17,8 +17,8 @@ app.use(express.json());
 //informa ao servidor que o localhost está autorizado a acessar o banco
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Credentials", true);
   return next();
 });
